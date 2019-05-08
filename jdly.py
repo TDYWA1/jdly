@@ -8,7 +8,7 @@ from selenium import webdriver
 
 import sqlite3
 
-TAGALL = 0
+tagall = 0
 
 
 class Mydb:
@@ -74,8 +74,9 @@ class Checkedtag(Jdlypar):  # 项目选择
 
     def getinput(self, inputnum=0):  # 显示标签和链接信息 并获得输入
         print("*******************************绅士*************************************")
-        global TAGALL
-        TAGALL = len(self.listu_n)
+        global tagall
+        tagall = len(self.listu_n)
+        print(tagall)
         for i in range(len(self.listu_n)):
             print(str(i + 1) + ".", list(dict(self.listu_n[i]).keys())[0], list(dict(self.listu_n[i]).values())[0])
         print("*******************************END*************************************")
@@ -221,16 +222,16 @@ class Alltest(object):
             obj.gethottag('tagcloud')
         obj.end()
         if not self.mode == 0:
-            global TAGALL
-            for i in range(1,
-                           TAGALL + 1):  ##############################################################################
-                me = obj.getinput(i)
+            me = obj.getinput(1)
+            global tagall
+            for i in range(2,tagall+ 1):  ##############################################################################
                 print(me)
                 self.url = me[0]
                 self.tbname = me[1]
                 self.pages = pages
                 self.pagee = pagee
                 self.thread()
+                me = obj.getinput(i)
         else:
             me = obj.getinput()
             print(me)
